@@ -1,0 +1,314 @@
+@import url('https://googleapis.com');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Desplazamiento suave al picar los botones del menú */
+}
+
+body {
+    background: #000814;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.page-container {
+    width: 100%;
+    position: relative;
+    background: #000814;
+}
+
+/* ==========================================
+   HEADER / NAVBAR (IDÉNTICO)
+=========================================== --> */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+}
+
+.logo {
+    width: 380px;
+    max-width: 30vw;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    margin-right: 20px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: white;
+    width: 110px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.red { border: 2px solid #ff3567; box-shadow: 0 0 10px rgba(255,53,103, 0.25); }
+.purple { border: 2px solid #d94dff; box-shadow: 0 0 10px rgba(217,77,255, 0.25); }
+.blue { border: 2px solid #5f68ff; box-shadow: 0 0 10px rgba(95,104,255, 0.25); }
+.cyan { border: 2px solid #42f2ff; box-shadow: 0 0 10px rgba(66,242,255, 0.25); }
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================
+   HERO / VIDEO PRINCIPAL
+=========================================== --> */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+/* ENMARCADOS NEGROS DE LA MAQUETA */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 28%;
+    background: #000814;
+    clip-path: polygon(0 0, 100% 0, 78% 40%, 0 100%);
+    z-index: 3;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 130px;
+    background: #000814;
+    /* Rampa negra que enmarca la base y sube en diagonal hacia la derecha */
+    clip-path: polygon(0 80%, 25% 80%, 65% 100%, 100% 35%, 100% 100%, 0% 100%);
+    z-index: 3;
+}
+
+/* TARJETA E INTERFAZ DE NOVEDADES */
+.news-card {
+    position: absolute;
+    left: 40px;
+    bottom: 155px;
+    width: 480px;
+    background: rgba(43, 47, 56, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 22px 26px;
+    z-index: 20;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.news-card h2 { color: #a3b3cc; font-size: 32px; font-weight: 400; margin-bottom: 8px; }
+.news-card p { color: #ffffff; font-size: 20px; line-height: 1.3; font-weight: 400; }
+
+.roblox-button {
+    position: absolute;
+    left: 40px;
+    bottom: 60px;
+    z-index: 20;
+}
+.roblox-button img { width: 170px; display: block; }
+
+
+/* ==========================================
+   NUEVA FRANJA AMARILLA: CORTE EN FLECHA INVERTIDA
+=========================================== --> */
+.yellow-arrow-divider {
+    position: absolute;
+    bottom: -15px; /* Se desplaza ligeramente hacia abajo para solaparse con el bloque negro */
+    left: 0;
+    width: 100%;
+    height: 120px; /* Aumentamos el alto para dar espacio a una inclinación más imponente */
+    background: #ffe600;
+    z-index: 10;
+    
+    /* Dibuja la flecha invertida perfecta: inicia alta en las esquinas y baja agresivamente hacia el centro */
+    clip-path: polygon(0 25%, 50% 100%, 100% 25%, 100% 100%, 0% 100%);
+}
+
+
+/* ==========================================
+   ESTILOS COMUNES DE NUEVAS SECCIONES INFRA
+=========================================== --> */
+.content-section {
+    position: relative;
+    padding: 90px 50px;
+    background: #020c1b; /* Fondo azul gacha muy oscuro */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+/* Colores temáticos de título según rarezas */
+.text-cyan { color: #42f2ff; text-shadow: 0 0 15px rgba(66,242,255, 0.2); }
+.text-red { color: #ff3567; text-shadow: 0 0 15px rgba(255,53,103, 0.2); }
+.text-purple { color: #d94dff; text-shadow: 0 0 15px rgba(217,77,255, 0.2); }
+
+/* ==========================================
+   SECCIÓN: LATEST NEWS
+=========================================== --> */
+.news-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.news-item {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 4px solid #42f2ff;
+    padding: 30px;
+    flex: 1;
+    border-radius: 0 8px 8px 0;
+}
+
+.news-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    color: white;
+}
+.badge-mythical { background: #ff3567; }
+.badge-legendary { background: #d94dff; }
+
+.news-item h3 { color: white; font-size: 22px; margin-bottom: 10px; }
+.news-item p { color: #8fa0ba; line-height: 1.5; }
+
+/* ==========================================
+   SECCIÓN: GAME STATS
+=========================================== --> */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.stat-box {
+    text-align: center;
+    background: rgba(255, 53, 103, 0.02);
+    border: 1px solid rgba(255, 53, 103, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    flex: 1;
+}
+
+.stat-number {
+    display: block;
+    font-size: 48px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #ff3567;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   SECCIÓN: MERCH
+=========================================== --> */
+.merch-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.merch-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.merch-card:hover {
+    border-color: #d94dff;
+    transform: translateY(-5px);
+}
+
+.merch-img-placeholder {
+    font-size: 64px;
+    background: rgba(255,255,255,0.02);
+    padding: 40px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.merch-card h3 { color: white; font-size: 18px; margin-bottom: 15px; }
+
+.buy-btn {
+    background: transparent;
+    border: 1px solid #d94dff;
+    color: #d94dff;
+    padding: 10px 30px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s;
+}
+.buy-btn:hover {
+    background: #d94dff;
+    color: white;
+}
+
+/* ==========================================
+   RESPONSIVE DISPOSITIVOS MÓVILES
+=========================================== --> */
+@media(max-width: 900px) {
+    header { flex-direction: column; gap: 20px; padding: 20px; }
+    nav { margin-right: 0; }
+    .news-card { width: calc(100% - 40px); left: 20px; bottom: 160px; }
+    .roblox-button { left: 20px; bottom: 70px; }
+    .news-grid, .stats-container, .merch-grid { flex-direction: column; gap: 20px; }
+    .content-section { padding: 60px 20px; }
+}
